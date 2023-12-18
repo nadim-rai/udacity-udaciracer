@@ -76,11 +76,12 @@ async function delay(ms) {
 async function handleCreateRace() {
 	// render starting UI
 	renderAt('#race', renderRaceStartView())
-
+	try{
 	// TODO - Get player_id and track_id from the store
-	
+		const player_id = store.player_id;
+   	 	const track_id = store.track_id;
 	// const race = TODO - invoke the API call to create the race, then save the result
-
+		
 	// TODO - update the store with the race id
 	// For the API to work properly, the race id should be race id - 1
 	
@@ -90,6 +91,9 @@ async function handleCreateRace() {
 	// TODO - call the async function startRace
 
 	// TODO - call the async function runRace
+	}catch(error){
+		console.log(error)
+	}
 }
 
 function runRace(raceID) {
