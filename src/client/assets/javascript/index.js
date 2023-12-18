@@ -87,10 +87,11 @@ async function handleCreateRace() {
 		store.race_id = parseInt(race.ID) - 1;
 	// The race has been created, now start the countdown
 	// TODO - call the async function runCountdown
-
+		await runCountdown();
 	// TODO - call the async function startRace
-
+		await startRace(store.race_id);
 	// TODO - call the async function runRace
+		await runRace(store.race_id);
 	}catch(error){
 		console.log(error)
 	}
@@ -326,10 +327,16 @@ function defaultFetchOpts() {
 
 function getTracks() {
 	// GET request to `${SERVER}/api/tracks`
+	return fetch(`${SERVER}/api/tracks`)
+	.then(res => res.json())
+	.catch(err => console.log(err))
 }
 
 function getRacers() {
 	// GET request to `${SERVER}/api/cars`
+	return fetch(`${SERVER}/api/cars`)
+	.then(res => res.json())
+	.catch(err => console.log(err))
 }
 
 function createRace(player_id, track_id) {
